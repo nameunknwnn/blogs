@@ -4,7 +4,7 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 export default async function graphqlRequest(query:any) {
     
-    const url="https://test.local/graphql"
+    const url="https://7f8e-2405-201-6828-f082-c929-dbda-dda8-b24c.ngrok-free.app/graphql"
     const headers={'Content-Type':'application/json'}
 
     // const res =await fetch (url,{
@@ -17,6 +17,6 @@ export default async function graphqlRequest(query:any) {
     });
 
     // const resJson=await res.json();   
-    console.log(res.data) ;  
+    // console.log(res.data) ;  
     return res.data ;
 }

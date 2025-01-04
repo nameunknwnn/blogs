@@ -44,7 +44,7 @@ export  async function getAllPosts(){
 export  async function getSinglePosts(slug:string){
   const query={
       query:`query getSinglePost {
-  post(id: ${slug}, idType: SLUG) {
+  post(id: "${slug}", idType: SLUG) {
     content(format: RENDERED)
     date
     excerpt(format: RENDERED)
@@ -72,7 +72,8 @@ export  async function getSinglePosts(slug:string){
 }`
   };
   const resJson= await graphqlRequest(query);
-  const singlePost =resJson.data.posts;
+  console.log(resJson.data.post);
+  const singlePost =resJson.data.post;
   return singlePost;
 }
 

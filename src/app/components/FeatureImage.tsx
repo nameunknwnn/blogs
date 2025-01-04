@@ -44,13 +44,13 @@ export default function FeatureImage({ post }: FeatureImageProps) {
   }
 
   return (
-    <Link href={`/blog/${post.slug}`}>
+      <>
       <img
         src={img.src}
         width={img.width}
         height={img.height}
         alt={post.title || "Blog Post"}
       />
-    </Link>
+   </>
   );
 }

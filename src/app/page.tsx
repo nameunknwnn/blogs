@@ -36,7 +36,7 @@ interface ArticleProps {
 
 const Article: React.FC<ArticleProps> = ({ article }) => (
   <Card as="article">
-    <Card.Title href={`/${article.slug}`}>
+    <Card.Title href={`/blog/${article.slug}`}>
       {article.title}
     </Card.Title>
     <Card.Description>

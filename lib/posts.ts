@@ -41,10 +41,10 @@ export  async function getAllPosts(){
     return allPosts;
 }
 
-export  async function getSinglePosts(){
+export  async function getSinglePosts(slug:string){
   const query={
       query:`query getSinglePost {
-  post(id: "5-travel-apps-you-should-check", idType: SLUG) {
+  post(id: ${slug}, idType: SLUG) {
     content(format: RENDERED)
     date
     excerpt(format: RENDERED)

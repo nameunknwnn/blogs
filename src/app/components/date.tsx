@@ -1,6 +1,12 @@
 import { parseISO, format } from "date-fns";
 
-export default function Date({dateString}:any){
+
+interface DateProps {
+    dateString: string;
+  }
+  
+
+export default function Date({dateString}:DateProps){
     const date =parseISO(dateString)
     return(
         <>

@@ -2,9 +2,14 @@ import axios from 'axios';
 
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
-export default async function graphqlRequest(query:any) {
+interface graphqlType {
+    query:string
+  }
+  
+
+export default async function graphqlRequest(query:graphqlType) {
     
-    const url="https://7f8e-2405-201-6828-f082-c929-dbda-dda8-b24c.ngrok-free.app/graphql"
+    const url="http://test.local/graphql"
     const headers={'Content-Type':'application/json'}
 
     // const res =await fetch (url,{

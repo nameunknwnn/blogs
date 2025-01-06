@@ -5,7 +5,6 @@ interface MediaSize {
   width: number;
   height: number;
 }
-
 interface MediaDetails {
   file: string;
   sizes: MediaSize[];
@@ -30,7 +29,7 @@ interface PageInfo {
 }
 
 // Types for getAllPosts query
-interface Post {
+export interface Post {
   date: string;
   slug: string;
   title: string;
@@ -40,6 +39,7 @@ interface Post {
     nodes: Category[];
   };
 }
+
 
 interface GetAllPostsResponse {
   nodes: Post[];
@@ -76,7 +76,7 @@ interface GetPostSlugsResponse {
 }
 
 // Function return types
-type GetAllPostsReturn = Promise<GetAllPostsResponse>;
-type GetSinglePostReturn = Promise<GetSinglePostResponse>;
-type GetPostSlugsReturn = Promise<GetPostSlugsResponse>;
+export type GetAllPostsReturn = Promise<GetAllPostsResponse>;
+export type GetSinglePostReturn = Promise<GetSinglePostResponse>;
+export type GetPostSlugsReturn = Promise<GetPostSlugsResponse>;
   

@@ -1,5 +1,3 @@
-import Image from "next/image";
-import Link from "next/link";
 import Rectangle from "../../../public"; // Adjust the path to match your project structure
 
 interface Post {

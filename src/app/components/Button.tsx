@@ -1,6 +1,7 @@
+
 import Link from 'next/link'
 import clsx from 'clsx'
-import { ComponentPropsWithoutRef } from 'react'
+import { ComponentPropsWithoutRef, forwardRef } from 'react'
 
 type VariantStyles = {
   primary: string
@@ -16,27 +17,38 @@ const variantStyles: VariantStyles = {
 
 type ButtonVariant = keyof typeof variantStyles
 
-type ButtonProps = {
+type ButtonBaseProps = {
   variant?: ButtonVariant
   className?: string
-  href?: string
-} & ComponentPropsWithoutRef<'button'>
-
-export function Button({ 
-  variant = 'primary', 
-  className, 
-  href, 
-  ...props 
-}: ButtonProps) {
-  className = clsx(
-    'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none',
-    variantStyles[variant],
-    className
-  )
-
-  return href ? (
-    <Link href={href} className={className} {...props} />
-  ) : (
-    <button className={className} {...props} />
-  )
 }
+
+type ButtonAsButtonProps = ButtonBaseProps &
+  Omit<ComponentPropsWithoutRef<'button'>, keyof ButtonBaseProps> & {
+    href?: undefined
+  }
+
+type ButtonAsLinkProps = ButtonBaseProps &
+  Omit<ComponentPropsWithoutRef<'a'>, keyof ButtonBaseProps | 'href'> & {
+    href: string
+  }
+
+type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps
+
+export const Button = forwardRef<HTMLButtonElement | HTMLAnchorElement, ButtonProps>(
+  function Button({ variant = 'primary', className, ...props }, ref) {
+    const classes = clsx(
+      'inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none',
+      variantStyles[variant],
+      className
+    )
+
+    if ('href' in props) {
+      const { href, ...restProps } = props as ButtonAsLinkProps
+      return <Link href={href} className={classes} ref={ref as React.Ref<HTMLAnchorElement>} {...restProps} />
+    }
+
+    return <button className={classes} ref={ref as React.Ref<HTMLButtonElement>} {...props} />
+  }
+)
+
+Button.displayName = 'Button'

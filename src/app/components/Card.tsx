@@ -2,9 +2,9 @@ import Link, { LinkProps } from 'next/link'
 import clsx from 'clsx'
 import { ReactNode } from 'react'
 
-interface ChevronRightIconProps extends React.SVGProps<SVGSVGElement> {}
 
-function ChevronRightIcon(props: ChevronRightIconProps) {
+
+function ChevronRightIcon(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
       <path
@@ -69,9 +69,9 @@ interface CardDescriptionProps {
 
 Card.Description = function CardDescription({ children }: CardDescriptionProps) {
   return (
-    <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+    <div className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {children}
-    </p>
+    </div>
   )
 }
 
